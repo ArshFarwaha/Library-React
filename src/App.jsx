@@ -1,25 +1,25 @@
 import "./index.css";
 import Nav from "./components/Nav.jsx";
-import Landing from "./components/Landing.jsx";
-import Highlights from "./components/Highlights.jsx";
-import Featured from "./components/Featured.jsx";
-import Discounted from "./components/Discounted";
-import Explore from "./components/Explore";
+import "./components/Explore";
 import Footer from "./components/Footer";
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from "./pages/Home";
+import Books from "./pages/Books";
+import { books } from "./data";
+
 
 function App() {
   return (
-    <div className="App">
-      <Nav />
-      <Landing />
-      <Highlights />
-      <Featured />
-      <Discounted />
-      <Explore />
-      <Footer />
-
-    </div>
+      <Router>
+        <div className="App">
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/books" element={<Books books={books} />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
   );
 }
 

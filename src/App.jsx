@@ -2,7 +2,7 @@ import "./index.css";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav.jsx";
-import "./components/Explore";
+import Explore from "./components/Explore";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Books from "./pages/Books";
@@ -31,7 +31,15 @@ function App() {
   }
 
   function removeItem(item) {
-    setCart(cart.filter(book => book.id != item.id))
+    setCart(cart.filter((book) => book.id != item.id));
+  }
+
+  function numberOfItems() {
+    let counter = 0;
+    cart.forEach((item) => {
+      counter += item.quantity;
+    });
+    return counter;
   }
 
   useEffect(() => {
@@ -41,7 +49,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Nav numberOfItems={numberOfItems()} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/books" element={<Books books={books} />} />
